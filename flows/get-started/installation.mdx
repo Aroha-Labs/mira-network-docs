@@ -1,0 +1,82 @@
+---
+title: "Installation"
+description: "Step-by-step guide to installing and setting up Mira Flows SDK for your project"
+icon: "download"
+iconType: "light"
+---
+
+## Account Setup
+
+<CardGroup cols="2">
+  <Card title="1. Create Account" icon="user-plus" href="https://console.mira.network">
+    Sign up for your free Mira Flows account and begin your AI development journey.
+  </Card>
+
+  <Card title="2. Get API Key" icon="key" href="https://console.mira.network">
+    Generate your API key from the API section - you'll need this to access Mira Flows features.
+  </Card>
+</CardGroup>
+
+## Prerequisites
+
+<Warning>
+  Mira flows requires **`Python >=3.9, <=3.13`**
+</Warning>
+```bash
+# Check your Python version
+python3 --version
+```
+
+Need to update? Visit [python.org/downloads](https://python.org/downloads)
+
+## Installation Steps
+
+1. Install the SDK using pip:
+
+```bash
+pip install mira-sdk
+```
+
+1. Initialize the client:
+
+```python
+from mira_sdk import MiraClient
+client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})
+```
+
+### Using Environment Variables (Recommended)
+
+Install python-dotenv
+
+```bash
+pip install python-dotenv
+```
+
+Create a `.env` file in your project root and add:
+
+```plaintext
+MIRA_API_KEY=your_api_key_here
+```
+
+Then initialize the client using the environment variable:
+
+```python
+from dotenv import load_dotenv
+from mira_sdk import MiraClient
+import os
+
+load_dotenv()
+client = MiraClient(config={"API_KEY": os.getenv("MIRA_API_KEY")})
+```
+
+## Next Steps
+
+<CardGroup cols="2">
+  <Card title="Explore Marketplace" icon="store" href="https://console.mira.network/">
+    Browse available flows to understand the platform's capabilities and start using pre-built solutions.
+  </Card>
+
+  <Card title="Create Your First Flow" icon="wand-magic-sparkles" href="/documentation/how-to-guides/building-elemental-flows">
+    Follow our guide to build your own custom flow and unlock the full potential of Mira Flows.
+  </Card>
+</CardGroup>

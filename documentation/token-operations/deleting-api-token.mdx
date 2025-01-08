@@ -1,0 +1,48 @@
+---
+title: "Deleting an API Token"
+description: "API to delete an API token"
+icon: "cube"
+iconType: "light"
+---
+
+The `delete_api_token(token: str)` method removes an API token, revoking its access to your account.
+
+### Example
+
+```python
+import asyncio
+from mira_sdk import MiraClient
+
+async def delete_api_token():
+    # Initialize the client
+    client = MiraClient(
+        base_url="https://api.mira.example.com",
+        api_token="your-api-token"
+    )
+
+    # Delete the token
+    token_to_delete = "abcd1234efgh5678"
+    await client.delete_api_token(token_to_delete)
+    print(f"API Token {token_to_delete} has been deleted.")
+
+if __name__ == "__main__":
+    asyncio.run(delete_api_token())
+```
+
+### Output
+
+The output confirms the token deletion:
+
+```plaintext
+API Token abcd1234efgh5678 has been deleted.
+```
+
+---
+
+## Summary
+
+- Use `create_api_token(request: ApiTokenRequest)` to generate new API tokens.
+- Use `list_api_tokens()` to retrieve all existing tokens.
+- Use `delete_api_token(token: str)` to revoke and remove an API token.
+
+With these methods, you can effectively manage your API tokens, ensuring secure and organized access to your Mira Network account.

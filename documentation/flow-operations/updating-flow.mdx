@@ -1,0 +1,42 @@
+---
+title: "Updating an Existing Flow"
+description: "API to update existing flow"
+icon: "cube"
+iconType: "light"
+---
+
+The `update_flow(flow_id: str, request: FlowRequest)` method updates an existing flow.
+
+### Example
+
+```python
+import asyncio
+from mira_sdk import MiraClient, FlowRequest
+
+async def update_existing_flow():
+    # Initialize the client
+    client = MiraClient(
+        base_url="https://api.mira.example.com",
+        api_token="your-api-token"
+    )
+
+    # Define update request
+    flow_id = "flow1"
+    request = FlowRequest(
+        name="Updated Flow Name",
+        description="Updated description."
+    )
+
+    # Update the flow
+    updated_flow = await client.update_flow(flow_id, request)
+    print("Updated flow:", updated_flow)
+
+if __name__ == "__main__":
+    asyncio.run(update_existing_flow())
+```
+
+### Output
+
+```plaintext
+Updated flow: {'id': 'flow1', 'name': 'Updated Flow Name', 'description': 'Updated description.'}
+```

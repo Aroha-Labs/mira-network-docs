@@ -1,0 +1,41 @@
+---
+title: "Creating a New Flow"
+description: "API to create a flow"
+icon: "cube"
+iconType: "light"
+---
+
+The `create_flow(request: FlowRequest)` method allows you to create a new flow.
+
+### Example
+
+```python
+import asyncio
+from mira_sdk import MiraClient, FlowRequest
+
+async def create_new_flow():
+    # Initialize the client
+    client = MiraClient(
+        base_url="https://api.mira.example.com",
+        api_token="your-api-token"
+    )
+
+    # Define a new flow request
+    request = FlowRequest(
+        name="New Flow",
+        description="A newly created flow."
+    )
+
+    # Create the flow
+    new_flow = await client.create_flow(request)
+    print("Created flow:", new_flow)
+
+if __name__ == "__main__":
+    asyncio.run(create_new_flow())
+```
+
+### Output
+
+```plaintext
+Created flow: {'id': 'new_flow_id', 'name': 'New Flow', 'description': 'A newly created flow.'}
+```

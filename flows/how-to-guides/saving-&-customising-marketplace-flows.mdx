@@ -1,0 +1,109 @@
+---
+title: "Save and Customize Marketplace Flows"
+description: "Learn how to save flows from the marketplace and customize them according to your specific requirements"
+icon: "floppy-disk"
+iconType: "light"
+---
+
+This guide explains how to **save flows from the marketplace** and **customize them** according to your specific requirements. 🛠️✨
+
+***
+
+## Saving a Flow
+
+When you find a useful flow in the **Marketplace**, you can **save it locally** for customization:
+
+```python Python
+from mira_sdk import MiraClient
+
+# Initialize client
+client = MiraClient(config={"API_KEY": "YOUR_API_KEY"})
+
+# Get the flow you want to customize
+flow = client.flow.get("author/flow_name")
+
+# Save to local YAML file
+flow.save("/path/to/flow.yaml")
+```
+
+***
+
+## Customizing Your Flow
+
+After saving the flow locally, you can **modify the YAML file** according to your needs. Here are the **key areas** you can customize:
+
+### Modifying Metadata
+
+Update the flow's basic information to reflect your ownership and purpose:
+
+```yaml .yaml
+metadata:
+  name: "your-customized-flow-name"          # Rename flow 
+  description: "Your modified description"   # Flow description
+  author: "your-username"                    # Your Mira Flows username
+  tags: [your, custom, tags]                 # Discovery keywords
+  private: true                              # Access control setting (true/false)
+```
+
+### Adjusting Inputs
+
+Modify input parameters to match your requirements:
+
+```yaml .yaml
+inputs:
+  custom_input:
+    type: string                                  # Input type
+    description: "Your custom input description"  # Input description
+    required: true                                # Required field
+    example: "Your example value"                 # Example value
+```
+
+### Updating the Prompt
+
+Customize the prompt to achieve your desired output:
+
+```yaml .yaml
+prompt: |
+  Your customized instructions...
+  You can use {custom_input} as a placeholder
+```
+
+### Modifying Model Settings
+
+Change the model configuration if needed:
+
+```yaml .yaml
+model:
+  provider: "provider-name"                      # AI service provider
+  name: "your-preferred-model"                   # Specific model identifier
+```
+
+***
+
+## Testing Your Customized Flow
+
+Before deployment, **test your modifications** to ensure everything works correctly:
+
+```python Python
+from mira_sdk import Flow
+
+# Load your modified flow
+modified_flow = Flow(source="/path/to/flow.yaml")
+
+# Test with sample inputs
+test_input = {"custom_input": "test value"}
+response = client.flow.test(modified_flow, test_input)
+```
+
+***
+
+## Deploying Your Custom Flow
+
+Once you're satisfied with the modifications:
+
+```python Python
+# Deploy as your own flow
+client.flow.deploy(modified_flow)
+```
+
+For more detailed information about **customization options** and **best practices**, please refer to our complete **documentation** 📖🔗.

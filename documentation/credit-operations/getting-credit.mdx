@@ -1,0 +1,37 @@
+---
+title: "Retrieving Credit Information"
+description: "API to retrieve credit information"
+icon: "cube"
+iconType: "light"
+---
+
+The `get_user_credits()` method allows you to check the current credit balance and usage details for your account.
+
+### Example
+
+```python
+import asyncio
+from mira_sdk import MiraClient
+
+async def get_credits():
+    # Initialize the client
+    client = MiraClient(
+        base_url="https://api.mira.example.com",
+        api_token="your-api-token"
+    )
+
+    # Fetch credit information
+    credits = await client.get_user_credits()
+    print("Credit Information:", credits)
+
+if __name__ == "__main__":
+    asyncio.run(get_credits())
+```
+
+### Output
+
+The output will display the current credit balance and usage:
+
+```plaintext
+Credit Information: {"balance": 100, "used": 20, "remaining": 80}
+```

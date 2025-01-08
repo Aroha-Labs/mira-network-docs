@@ -1,11 +1,14 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "mira",
+  "theme": "venus",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "/logo/logo-png-dark.png",
+    "light": "/logo/logo-png-light.png",
+    "href": "https://flow-docs.mira.network/documentation/get-started/introduction"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/mira_favicon.svg",
+  "layout": "sidenav",
   "colors": {
     "primary": "#0D9373",
     "light": "#07C983",
@@ -15,77 +18,120 @@
       "to": "#07C983"
     }
   },
-  "topbarLinks": [
-    {
-      "name": "Support",
-      "url": "mailto:hi@mintlify.com"
-    }
-  ],
-  "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+  "background": {
+    "style": "gradient"
   },
   "tabs": [
     {
-      "name": "API Reference",
-      "url": "api-reference"
+      "name": "Documentation",
+      "url": "documentation"
+    },
+    {
+      "name": "Flows",
+      "url": "flows"
+    },
+    {
+      "name": "Examples",
+      "url": "examples"
     }
   ],
+  "topbarCtaButton": {
+    "name": "Console",
+    "url": "https://console.arohalabs.tech"
+  },
   "anchors": [
     {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
-    {
       "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "icon": "discord",
+      "url": "https://discord.com/invite/mira-network"
     }
   ],
   "navigation": [
     {
       "group": "Get Started",
       "pages": [
-        "introduction",
-        "quickstart",
-        "development"
+        "documentation/get-started/introduction",
+        "documentation/get-started/installation"
       ]
     },
     {
-      "group": "Essentials",
+      "group": "Model Operations",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "documentation/model-operations/list-models",
+        "documentation/model-operations/generate"
       ]
     },
     {
-      "group": "API Documentation",
+      "group": "Flow Operations",
       "pages": [
-        "api-reference/introduction"
+        "documentation/flow-operations/list-flows",
+        "documentation/flow-operations/getting-flow",
+        "documentation/flow-operations/creating-flow",
+        "documentation/flow-operations/updating-flow",
+        "documentation/flow-operations/deleting-flow",
+        "documentation/flow-operations/generate-response"
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Token Operations",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "documentation/token-operations/create-api-token",
+        "documentation/token-operations/listing-api-tokens",
+        "documentation/token-operations/deleting-api-token"
       ]
+    },
+    {
+      "group": "Credit Operations",
+      "pages": [
+        "documentation/credit-operations/getting-credit",
+        "documentation/credit-operations/adding-credits",
+        "documentation/credit-operations/viewing-credit-history"
+      ]
+    },
+    {
+      "group": "Get Started",
+      "pages": [
+        "flows/get-started/introduction",
+        "flows/get-started/installation",
+        "flows/get-started/models"
+      ]
+    },
+    {
+      "group": "Core Concepts",
+      "pages": [
+        "flows/core-concepts/elemental-flows",
+        "flows/core-concepts/compound-flows",
+        "flows/core-concepts/datasets-and-rag"
+      ]
+    },
+    {
+      "group": "How To Guides",
+      "pages": [
+        "flows/how-to-guides/using-marketplace-flows",
+        "flows/how-to-guides/building-elemental-flows",
+        "flows/how-to-guides/building-compound-flows",
+        "flows/how-to-guides/implementing-rag-capabilities",
+        "flows/how-to-guides/saving-&-customising-marketplace-flows",
+        "flows/how-to-guides/empowering-flows-with-actions"
+      ]
+    },
+    {
+      "group": "Examples",
+      "pages": ["examples/examples", "examples/tutorials"]
     }
   ],
+
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://linkedin.com/company/mintlify"
+    "x": "https://x.com/Mira_Network",
+    "github": "https://github.com/Aroha-Labs/flow-docs",
+    "linkedin": "https://www.linkedin.com/company/mira-aroha-labs"
+  },
+
+  "feedback": {
+    "thumbsRating": true,
+    "suggestEdit": true
+  },
+  "search": {
+    "prompt": "Search documentation..."
   }
 }

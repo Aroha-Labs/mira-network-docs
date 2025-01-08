@@ -1,0 +1,153 @@
+---
+title: 'Turn flows into Actionable Agents'
+description: 'Use the Composio tool integration to turn flows into Actionalble Agents'
+icon: "bolt"
+iconType: "light"
+---
+
+Composio allows you to connect your Mira Flows with various external services and platforms, enabling automated actions based on your flow outputs. This integration bridges the gap between AI-powered flows and real-world actions.
+
+<Warning>
+  Composio tool requires Anthropic Claude-3.5-sonnet to function. Check out [Models](/documentation/get-started/models) for more information.
+</Warning>
+
+## Step-by-Step Integration Guide
+
+### 1. Set Up Platform Integration
+
+First, let's set up your desired platform integration in Composio:
+
+1. Visit [Composio](https://composio.dev/)
+
+2. Sign in to your account & Navigate to "All Tools"
+
+3. Search for your desired integration (e.g., Twitter, Discord, Telegram)
+
+4. Complete the integration process and authorise your account
+
+### 2. Obtain Integration Details
+
+After setting up the integration, you'll need 3 key pieces of information:
+
+1. **API Key**:
+
+   * Go to your Composio dashboard
+
+   * Look for the API key section at top and copy your API key.
+
+   * You can use the default API key or create a new one
+
+2. **Enum**:
+
+   * Go to the actions of the app you want to integrate with&#x20;
+
+   * Copy the "Enum" of the action you wish to perform
+
+3. **Entity ID**:
+
+   * This is generated after you complete the platform integration
+
+   * Find it in your "connected accounts" section under tools
+
+### 3. Step by Step Demo
+
+Here's an interactive demo showing the process:
+
+<Frame>
+  <iframe
+    src="https://app.supademo.com/embed/cm4vmuwe20ewnvlry0qep5yql?embed_v=2"
+    loading="lazy"
+    title="Composio Demo"
+    allow="clipboard-write"
+    frameborder="0"
+    webkitallowfullscreen="true"
+    mozallowfullscreen="true"
+    allowfullscreen
+    style={{
+width: '100%',
+height: '600px',
+border: 'none'
+}}
+  />
+</Frame>
+
+## Code Implementation
+
+### ComposioConfig Attributes
+
+| Attribute          | Description                                                       | Required |
+| ------------------ | ----------------------------------------------------------------- | -------- |
+| COMPOSIO\_API\_KEY | Your Composio authentication key                                  | Yes      |
+| ACTION             | Platform-specific action (e.g., "TWITTER\_POST", "DISCORD\_SEND") | Yes      |
+| TASK               | Natural language description including `{content}` placeholder    | Yes      |
+| ENTITY\_ID         | Platform-specific entity identifier                               | Yes      |
+
+### Code Example
+
+```python
+from mira_sdk import MiraClient, Flow, ComposioConfig
+
+# Initialize Mira client with your API key
+client = MiraClient(config={"API_KEY": "YOUR_MIRA_API_KEY"})
+
+# Get your exisitng flow
+version = "1.0.0"
+input_data = {"key": "value"}
+
+# If no version is provided, latest version is used by default
+if version:
+    flow = f"author/your-flow-name/{version}"
+else:
+    flow = "author/your-flow-name"
+
+# Set up your flow's input parameters
+input_dict = {
+    "input": "value"
+}
+
+# Execute flow with Composio integration
+# The flow's output will automatically replace {content} in the TASK
+response = client.flow.execute(
+    flow,
+    input_dict,
+    ComposioConfig(
+        COMPOSIO_API_KEY="YOUR_COMPOSIO_API_KEY",
+        ACTION="ENUM",  # This is the Enum e.g., "TWITTER_POST", "DISCORD_SEND"
+        TASK="Describe your task in natural language - {content}",  # {content} is required and gets replaced with flow output
+        ENTITY_ID="YOUR_ENTITY_ID"  # Platform-specific identifier
+    )
+)
+```
+
+### What Not to Do
+
+1. Don't forget `{content}` in TASK:
+
+```python
+# ❌ Incorrect - missing {content}
+TASK="Post this message"
+
+# ✅ Correct
+TASK="Post this message: {content}"
+```
+
+1. Don't modify the `{content}` placeholder:
+
+```python
+# ❌ Incorrect
+TASK="Send {message}"
+TASK="Post {text}"
+
+# ✅ Correct
+TASK="Send {content}"
+```
+
+1. Don't use multiple `{content}` placeholders:
+
+```python
+# ❌ Incorrect
+TASK="Post {content} and then {content}"
+
+# ✅ Correct
+TASK="Post {content}"
+```

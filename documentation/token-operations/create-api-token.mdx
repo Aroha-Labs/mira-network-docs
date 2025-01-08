@@ -1,0 +1,43 @@
+---
+title: "Creating an API Token"
+description: "API to create an API token"
+icon: "cube"
+iconType: "light"
+---
+
+The `create_api_token(request: ApiTokenRequest)` method generates a new API token. This token can be used to authenticate requests to the Mira Network API.
+
+### Example
+
+```python
+import asyncio
+from mira_sdk import MiraClient, ApiTokenRequest
+
+async def create_api_token():
+    # Initialize the client
+    client = MiraClient(
+        base_url="https://api.mira.example.com",
+        api_token="your-existing-api-token"
+    )
+
+    # Create a request object
+    request = ApiTokenRequest(description="New token for project usage")
+
+    # Generate the API token
+    token_response = await client.create_api_token(request)
+    print("New API Token:", token_response)
+
+if __name__ == "__main__":
+    asyncio.run(create_api_token())
+```
+
+### Output
+
+The output will display the newly created API token details:
+
+```plaintext
+New API Token: {"token": "abcd1234efgh5678"}
+```
+
+
+

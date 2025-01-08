@@ -1,0 +1,43 @@
+---
+title: "Generating Response"
+description: "API to generate responses with a flow"
+icon: "cube"
+iconType: "light"
+---
+
+The `generate_with_flow(flow_id: str, request: FlowChatCompletion)` method uses a flow to generate a response.
+
+### Example
+
+```python
+import asyncio
+from mira_sdk import MiraClient, FlowChatCompletion, Message
+
+async def generate_with_flow():
+    # Initialize the client
+    client = MiraClient(
+        base_url="https://api.mira.example.com",
+        api_token="your-api-token"
+    )
+
+    # Create a FlowChatCompletion request
+    flow_id = "flow1"
+    request = FlowChatCompletion(
+        messages=[
+            Message(role="user", content="What is the weather today?")
+        ]
+    )
+
+    # Generate response
+    response = await client.generate_with_flow(flow_id, request)
+    print("Generated response:", response)
+
+if __name__ == "__main__":
+    asyncio.run(generate_with_flow())
+```
+
+### Output
+
+```plaintext
+Generated response: "The weather today is sunny with a high of 25°C."
+```
