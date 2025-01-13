@@ -23,8 +23,8 @@
   },
   "tabs": [
     {
-      "name": "Documentation",
-      "url": "documentation"
+      "name": "Network",
+      "url": "network"
     },
     {
       "name": "Flows",
