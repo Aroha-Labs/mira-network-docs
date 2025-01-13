@@ -36,10 +36,6 @@ from mira_network.sync_client import MiraSyncClient
 from mira_network.models import AiRequest, Message
 
 # Using context manager (recommended)
-from mira_network.sync_client import MiraSyncClient
-from mira_network.models import AiRequest, Message
-
-# Using context manager (recommended)
 with MiraSyncClient(api_token="your_api_token", base_url="https://apis.mira.network") as client:
     # Example 1: Non-streaming response
     request = AiRequest(
