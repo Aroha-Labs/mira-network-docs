@@ -51,7 +51,8 @@
       "group": "Get Started",
       "pages": [
         "network/get-started/introduction",
-        "network/get-started/installation"
+        "network/get-started/installation",
+        "network/get-started/quickstart"
       ]
     },
     {
