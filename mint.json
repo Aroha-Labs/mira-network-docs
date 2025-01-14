@@ -44,6 +44,11 @@
       "name": "Community",
       "icon": "discord",
       "url": "https://discord.com/invite/mira-network"
+    },
+    {
+      "name": "Feedback",
+      "icon": "comment",
+      "url": "https://feedback.mira.network"
     }
   ],
   "navigation": [
