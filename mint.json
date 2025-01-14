@@ -63,17 +63,6 @@
       ]
     },
     {
-      "group": "Flow Operations",
-      "pages": [
-        "network/flow-operations/list-flows",
-        "network/flow-operations/getting-flow",
-        "network/flow-operations/creating-flow",
-        "network/flow-operations/updating-flow",
-        "network/flow-operations/deleting-flow",
-        "network/flow-operations/generate-response"
-      ]
-    },
-    {
       "group": "Token Operations",
       "pages": [
         "network/token-operations/create-api-token",
