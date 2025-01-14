@@ -1,38 +1,66 @@
 ---
 title: "Installation"
-description: "Step-by-step guide to installing and setting up Mira Flows SDK for your project"
+description: "Install and configure Mira Network SDK for your project"
 icon: "download"
 iconType: "light"
 ---
 
-## Step 1: Install via pip
+## Prerequisites
 
-Run the following command in your terminal to install the SDK:
+Before installing the SDK, ensure you have:
+- Python 3.8 or higher installed
+- pip package manager
+- A Mira Network API key (get one at [console.mira.network](https://console.mira.network))
+
+## Installation Steps
+
+### Step 1: Install via pip
+
+Install the SDK using pip:
 
 ```bash
 pip install mira-network
 ```
 
-This will download and install the latest version of the Mira SDK along with its dependencies.
+### Step 2: Verify Installation
 
-## Step 2: Verify Installation
-
-After installation, you can verify that the SDK is correctly installed by running:
+Verify the installation:
 
 ```bash
 pip show mira-network
 ```
 
-You should see the SDK version and related metadata.
+### Step 3: Environment Configuration
 
-## Step 3: Import the SDK
-
-Test your setup by creating a simple Python script and importing the Mira SDK:
+Configure your environment:
 
 ```python
-from mira_sdk import MiraClient
+import os
+from mira_network import MiraClient
 
-print("Mira SDK installed successfully!")
+client = MiraClient(
+    api_key=os.getenv("MIRA_API_KEY"),
+    base_url=os.getenv("MIRA_API_URL", "https://apis.mira.network")
+)
 ```
 
-You're now ready to use the Mira SDK to build powerful AI-driven applications!
+### Step 4: Test Your Setup
+
+Create a simple test script:
+
+```python
+from mira_network import MiraClient
+
+async def test_setup():
+    async with MiraClient(api_key="your-api-key") as client:
+        models = await client.list_models()
+        print("Available models:", models)
+
+if __name__ == "__main__":
+    import asyncio
+    asyncio.run(test_setup())
+```
+
+## Next Steps
+
+Once installed, proceed to the [Quickstart](/documentation/get-started/quickstart) guide to make your first API call.

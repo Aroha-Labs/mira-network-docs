@@ -1,95 +1,87 @@
 ---
 title: "Quickstart"
-description: "Step-by-step guide to make an API call to interact with an LLM Model"
+description: "Get started with Mira Network SDK"
 icon: "rocket"
 iconType: "light"
 ---
 
-## Step 1: Install via pip
+## Quick Start Guide
 
-Run the following command in your terminal to install the SDK:
+Let's walk through basic usage patterns of the Mira Network SDK.
 
-```bash
-pip install mira-network
-```
+### Basic Chat Completion
 
-This will download and install the latest version of the Mira SDK along with its dependencies.
+Here's a simple example to get started:
 
-## Step 2: Verify Installation
-
-After installation, you can verify that the SDK is correctly installed by running:
-
-```bash
-pip show mira-network
-```
-
-You should see the SDK version and related metadata.
-
-## Step 3: Import the SDK
-
-Test your setup by creating a simple Python script and importing the Mira SDK
-
-### Synchronous Usage
-
-```python Python
-from mira_network.sync_client import MiraSyncClient
-from mira_network.models import AiRequest, Message
-
-# Using context manager (recommended)
-from mira_network.sync_client import MiraSyncClient
-from mira_network.models import AiRequest, Message
-
-# Using context manager (recommended)
-with MiraSyncClient(api_token="your_api_token", base_url="https://apis.mira.network") as client:
-    # Example 1: Non-streaming response
-    request = AiRequest(
-        messages=[
-            Message(role="system", content="You are a helpful assistant."),
-            Message(role="user", content="Hello!")
-        ],
-        model="gpt-4o",                                                        # You can choose from the available models
-        stream=False
-    )
-    response = client.generate(request)
-    print(response)
-```
-
-### Asynchronous Usage
-
-```python Python
-import asyncio
-from mira_network.client import MiraClient
-from mira_network.models import AiRequest, Message, ModelProvider
+```python
+from mira_network import MiraClient
 
 async def main():
-    # Using async context manager (recommended)
-    async with MiraClient(api_token="your-api-token") as client:
-        # Example 1: Non-streaming response
-        request = AiRequest(
+    async with MiraClient(api_key="your-api-key") as client:
+        response = await client.chat_completions_create(
+            model="your-chosen-model",
             messages=[
-                Message(role="system", content="You are a helpful assistant."),
-                Message(role="user", content="Hello!")
-            ],
-            model="gpt-4o",
-            stream=False
+                {"role": "user", "content": "What is the capital of France?"}
+            ]
         )
-        response = await client.generate(request)
-        print(response)
-        
-        # Example 2: Streaming response
-        stream_request = AiRequest(
-            messages=[
-                Message(role="system", content="You are a helpful assistant."),
-                Message(role="user", content="Tell me a story!")
-            ],
-            model="gpt-4o",
-            stream=True
-        )
-        async for chunk in await client.generate(stream_request):
-            print(chunk)
+        print(response["choices"][0]["message"]["content"])
 
 if __name__ == "__main__":
+    import asyncio
     asyncio.run(main())
 ```
 
-You're now ready to use the Mira SDK to build powerful AI-driven applications!
+### Streaming Responses
+
+For real-time responses:
+
+```python
+async def stream_response():
+    async with MiraClient(api_key="your-api-key") as client:
+        stream = await client.chat_completions_create(
+            model="your-chosen-model",
+            messages=[{"role": "user", "content": "Write a story"}],
+            stream=True
+        )
+        async for chunk in stream:
+            print(chunk["choices"][0]["delta"]["content"], end="")
+```
+
+### Managing Conversations
+
+Handle multi-turn conversations:
+
+```python
+messages = [
+    {"role": "system", "content": "You are a helpful assistant"},
+    {"role": "user", "content": "Hi! Can you help me?"},
+]
+
+async with MiraClient(api_key="your-api-key") as client:
+    response = await client.chat_completions_create(
+        model="your-chosen-model",
+        messages=messages
+    )
+```
+
+### Error Handling
+
+Implement robust error handling:
+
+```python
+try:
+    response = await client.chat_completions_create(
+        model="your-chosen-model",
+        messages=[{"role": "user", "content": "Hello"}]
+    )
+except ValueError as e:
+    print(f"Validation error: {e}")
+except Exception as e:
+    print(f"An error occurred: {e}")
+```
+
+## Next Steps
+
+- Explore [Advanced Features](/documentation/advanced-features)
+- Check out [API Reference](/documentation/api-reference)
+- Learn about [Best Practices](/documentation/best-practices)
