@@ -1,37 +1,35 @@
 ---
-title: "Retrieving Credit Information"
-description: "API to retrieve credit information"
-icon: "cube"
+title: "Checking Credits"
+description: "Monitor your credit balance and usage"
+icon: "wallet"
 iconType: "light"
 ---
 
-The `get_user_credits()` method allows you to check the current credit balance and usage details for your account.
+## Credit Information
+
+Monitor your current credit balance and usage using the `get_user_credits()` method.
 
 ### Example
 
-```python Python
-import asyncio
-from mira_sdk import MiraClient
+```python
+from mira_network import MiraClient
 
-async def get_credits():
-    # Initialize the client
-    client = MiraClient(
-        base_url="https://api.mira.example.com",
-        api_token="your-api-token"
-    )
-
-    # Fetch credit information
-    credits = await client.get_user_credits()
-    print("Credit Information:", credits)
-
-if __name__ == "__main__":
-    asyncio.run(get_credits())
+async def check_credits():
+    async with MiraClient(api_key="your-api-key") as client:
+        credits = await client.get_user_credits()
+        print("Credits:", credits)
 ```
 
-### Output
+### Response Structure
 
-The output will display the current credit balance and usage:
-
-```plaintext
-Credit Information: {"balance": 100, "used": 20, "remaining": 80}
+```python
+{
+    "amount": 150.75    # Current balance in USD
+}
 ```
+
+### Usage Notes
+
+- Monitor credits regularly to ensure uninterrupted service
+- View detailed credit analytics in [Mira Console Credit History](https://console.arohalabs.tech/credit-history)
+- Credits are consumed based on model usage and request volume
