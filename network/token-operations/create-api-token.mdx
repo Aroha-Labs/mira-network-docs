@@ -1,43 +1,44 @@
 ---
 title: "Creating an API Token"
-description: "API to create an API token"
-icon: "cube"
+description: "Create new API tokens for authentication"
+icon: "key"
 iconType: "light"
 ---
 
-The `create_api_token(request: ApiTokenRequest)` method generates a new API token. This token can be used to authenticate requests to the Mira Network API.
+## Create API Token
+
+Generate new API tokens for authentication using the `create_api_token()` method.
 
 ### Example
 
-```python Python
-import asyncio
-from mira_sdk import MiraClient, ApiTokenRequest
+```python
+from mira_network import MiraClient
 
-async def create_api_token():
-    # Initialize the client
-    client = MiraClient(
-        base_url="https://api.mira.example.com",
-        api_token="your-existing-api-token"
-    )
+async def create_token():
+    async with MiraClient(api_key="your-api-key") as client:
+        # Create new API token
+        new_token = await client.create_api_token({
+            "description": "Production API Key"
+        })
+        print(f"New token created: {new_token}")
 
-    # Create a request object
-    request = ApiTokenRequest(description="New token for project usage")
-
-    # Generate the API token
-    token_response = await client.create_api_token(request)
-    print("New API Token:", token_response)
-
-if __name__ == "__main__":
-    asyncio.run(create_api_token())
 ```
 
-### Output
+### Response Structure
 
-The output will display the newly created API token details:
-
-```plaintext
-New API Token: {"token": "abcd1234efgh5678"}
+```python
+{
+    "token": "sk-mira-xxxx...",  # API keys start with sk-mira-
+    "description": "Production API Key",
+    "created_at": "2024-01-01T00:00:00Z"
+}
 ```
 
+### Usage Notes
 
-
+- Store tokens securely
+- Use descriptive names for easy identification
+- Keep track of token creation dates
+- Monitor usage metrics in [Mira Console](https://console.arohalabs.tech/api-keys) with detailed analytics
+- API keys always start with `sk-mira-`
+```

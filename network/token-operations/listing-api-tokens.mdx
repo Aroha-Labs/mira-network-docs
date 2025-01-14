@@ -1,40 +1,56 @@
 ---
-title: "Listing API Tokens"
-description: "API to list API tokens"
-icon: "cube"
+title: "List API Tokens"
+description: "Retrieve all active API tokens"
+icon: "list"
 iconType: "light"
 ---
 
-The `list_api_tokens()` method retrieves all existing API tokens for your account.
+## List API Tokens
+
+View all active API tokens using the `list_api_tokens()` method.
 
 ### Example
 
-```python Python
-import asyncio
-from mira_sdk import MiraClient
+```python
+from mira_network import MiraClient
 
-async def list_api_tokens():
-    # Initialize the client
-    client = MiraClient(
-        base_url="https://api.mira.example.com",
-        api_token="your-api-token"
-    )
-
-    # List API tokens
-    tokens = await client.list_api_tokens()
-    print("API Tokens:", tokens)
-
-if __name__ == "__main__":
-    asyncio.run(list_api_tokens())
+async def list_tokens():
+    async with MiraClient(api_key="your-api-key") as client:
+        # List all tokens
+        tokens = await client.list_api_tokens()
+        
+        # Display token information
+        for token in tokens:
+            print(f"Token: {token['description']}")
 ```
 
-### Output
+### Response Structure
 
-The output will be a list of all your API tokens:
-
-```plaintext
-API Tokens: [
-    {"token": "abcd1234efgh5678", "description": "New token for project usage"},
-    {"token": "ijkl9012mnop3456", "description": "Token for backup system"}
+```python
+[
+    {
+        "token": "mira_tk_xxxx...",
+        "description": "Production API Key",
+        "created_at": "2024-01-01T00:00:00Z"
+    },
+    // ... other tokens
 ]
 ```
+
+### Usage Notes
+
+- Regular audit of active tokens recommended
+- Check creation dates for token rotation
+- Review token descriptions for accuracy
+- Monitor token usage metrics in [Mira Console](https://console.arohalabs.tech/api-keys)
+- API keys follow the format `sk-mira-****`
+
+### Usage Metrics
+
+View detailed usage metrics for each token in the Mira Console:
+- Request volume over time
+- Model usage distribution
+- Cost analysis charts
+- Usage patterns visualization
+
+Access these metrics by visiting the [API Keys Dashboard](https://console.arohalabs.tech/api-keys) in your Mira Console.
