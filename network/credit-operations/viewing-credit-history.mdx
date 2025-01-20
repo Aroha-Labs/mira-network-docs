@@ -1,40 +1,45 @@
 ---
-title: "Viewing Credit History"
-description: "API to ciew credit history"
-icon: "cube"
+title: "Credit History"
+description: "Track your credit usage over time"
+icon: "chart-line"
 iconType: "light"
 ---
 
-The `get_credits_history()` method retrieves a history of all credit transactions, including additions and usage.
+## Credit History
+
+Track your credit usage and transactions over time using the `get_credits_history()` method.
 
 ### Example
 
-```python Python
-import asyncio
-from mira_sdk import MiraClient
+```python
+from mira_network import MiraClient
 
-async def get_credit_history():
-    # Initialize the client
-    client = MiraClient(
-        base_url="https://api.mira.example.com",
-        api_token="your-api-token"
-    )
-
-    # Fetch credit history
-    history = await client.get_credits_history()
-    print("Credit History:", history)
-
-if __name__ == "__main__":
-    asyncio.run(get_credit_history())
+async def view_credit_history():
+    async with MiraClient(api_key="your-api-key") as client:
+        history = await client.get_credits_history()
+        
+        for transaction in history:
+            print(f"Transaction: {transaction}")
 ```
 
-### Output
+### Response Structure
 
-The output will show a list of credit transactions:
-
-```plaintext
-Credit History: [
-    {"transaction_id": "txn123", "amount": 50, "type": "add", "date": "2025-01-01"},
-    {"transaction_id": "txn124", "amount": -10, "type": "usage", "date": "2025-01-02"}
+```python
+[
+    {
+        "amount": 10.50,          # Amount in USD
+        "description": "Used 1000 tokens with gpt-4o model"
+    },
+    {
+        "amount": 50.00,          # Amount in USD
+        "description": "Credit recharge"
+    }
+    // ... more transactions
 ]
 ```
+
+### Visual Analytics
+
+For detailed credit usage analytics and visualizations:
+1. Visit [Mira Console Credit History](https://console.arohalabs.tech/credit-history)
+2. View usage patterns, trends, and detailed breakdowns

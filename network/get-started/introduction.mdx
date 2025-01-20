@@ -1,44 +1,54 @@
 ---
 title: "Introduction"
-description: "Introduction to Mira Console SDK"
+description: "Introduction to Mira Network SDK"
 icon: "house"
 iconType: "light"
 ---
 
-## What is Mira SDK?
+## What is Mira Network SDK?
 
-Welcome to the Mira SDK Documentation! This guide will help you seamlessly integrate the Mira Network API into your Python applications using the Mira SDK. Whether you're working on model inference, managing AI workflows, or tracking credits, the Mira SDK provides a simple and efficient way to interact with the Mira Network API.
+Mira Network SDK is your unified interface to the world of AI language models, providing a seamless way to integrate multiple language models while offering advanced routing, load balancing, and flow management capabilities.
 
-The Mira SDK is a Python library designed to interface with the Mira Network API. It simplifies complex operations into straightforward methods and ensures robust type validation using Pydantic models. With the Mira SDK, you can easily access:
+The SDK offers several key capabilities:
 
-- **Model Inference**: Utilize advanced AI models like `mira/llama3.1` for tasks such as text generation, classification, and more.
-- **Flow Management**: Create, update, and manage AI workflows with ease.
-- **Credit System**: Monitor and manage usage credits efficiently.
+- 🔄 **Smart Model Routing**: Route requests across different models
+- ⚖️ **Load Balancing**: Distribute workload across nodes
+- 🌊 **Flow Management**: Handle request patterns efficiently
+- 🔌 **Universal Integration**: Single API for multiple models
+- 📊 **Usage Tracking**: Monitor your model usage
+
+## Why Choose Mira Network SDK?
+
+| Feature                | Mira SDK                   | Traditional Approach    |
+| ---------------------- | -------------------------- | ----------------------- |
+| 🔄 Multi-model Support | Single unified API         | Separate APIs per model |
+| ⚖️ Load Balancing      | Built-in                   | Custom implementation   |
+| 🌊 Flow Control        | Automatic handling         | Manual implementation   |
+| 📊 Usage Tracking      | Integrated                 | Custom tracking needed  |
+| 🛡️ Error Handling      | Standardized across models | Model-specific handling |
 
 ## Key Features
 
-- **Asynchronous API**: Built with `httpx` to enable non-blocking, high-performance operations.
-- **Full Type Support**: Benefit from type hints and Pydantic-based models for reliable request and response validation.
-- **Comprehensive API Coverage**: Access all Mira API endpoints, including:
-  - Model Operations
-  - Flow Operations
-  - Token Management
-  - Credit System
+- 🔌 Simple, intuitive API
+- 🔄 Async-first design
+- 🌊 Streaming support
+- 🔐 Error handling
+- 🛠️ Customizable nodes
+- 📊 Usage tracking
+
+## Perfect For
+
+- 🤖 AI Applications
+- 📝 Text Generation
+- 🔍 Search Enhancement
+- 🎮 Interactive Systems
 
 ## Getting Started
 
-To start using the Mira SDK, you'll need:
+To begin using the Mira Network SDK, you'll need:
 
-1. **Python Environment**: Python 3.8 or higher is recommended.
-2. **Mira API Access**: Obtain your API token by signing up on the Mira Network platform.
-3. **Installation**: Install the Mira SDK via pip (see [Installation](/documentation/get-started/installation) for detailed instructions).
+1. **Python Environment**: Python 3.8 or higher
+2. **Mira API Key**: Sign up at [Mira Console](https://console.mira.network) to obtain your API key
+3. **Installation**: Install via pip (see next section)
 
-Once you've completed the prerequisites, you can explore the SDK's functionality with the [Quick Start](#) guide and dive into advanced features via the [API Reference](#).
-
-## Overview
-
-- Set up your Python environment.
-- Install the Mira SDK.
-- Configure your API token to interact with Mira Network.
-
-Refer to the next section for detailed installation steps.
+Ready to start? Head to the [Installation](/documentation/get-started/installation) guide.
